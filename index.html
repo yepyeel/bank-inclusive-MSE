@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>普惠贷款经营数据分析报告</title>
+  <style>
+:root{--ink:#1f2933;--muted:#5b6675;--line:#d9e2ec;--panel:#f7f9fc;--brand:#155e75;--brand2:#0f766e;--soft:#e6f4f7;--good:#166534;--warn:#8a4b0f;--warnbg:#fff5e6;}
+*{box-sizing:border-box} body{margin:0;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.62} main{max-width:1160px;margin:0 auto;padding:42px 28px 68px} header{border-bottom:3px solid var(--brand);padding-bottom:18px;margin-bottom:28px} h1{margin:0 0 10px;font-size:34px;line-height:1.2;color:#0f3944;letter-spacing:0} h2{margin:34px 0 14px;font-size:24px;line-height:1.3;color:#12313a;letter-spacing:0} h3{margin:22px 0 10px;font-size:18px;color:#183f4b;letter-spacing:0}.meta{color:var(--muted);font-size:14px;margin:0}.summary{display:grid;gap:12px}.summary-item{border-left:4px solid var(--brand);background:var(--soft);padding:13px 16px}.summary-item strong{color:#0f3944}.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 22px}.kpi{border:1px solid var(--line);background:#fff;padding:14px 15px}.kpi .label{color:var(--muted);font-size:13px}.kpi .value{font-size:24px;font-weight:750;color:#0f3944;margin-top:4px}.kpi .sub{font-size:13px;color:var(--muted);margin-top:4px} table{width:100%;border-collapse:collapse;margin:16px 0 22px;table-layout:fixed;font-size:14px} th{background:#12313a;color:#fff;text-align:left;font-weight:700;padding:10px 12px;border:1px solid #12313a;vertical-align:top} td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;word-break:break-word} tr:nth-child(even) td{background:#fbfcfe}.right{text-align:right}.left{text-align:left}.callout{margin:16px 0;padding:14px 16px;border:1px solid var(--line);background:var(--panel)}.callout.good{background:#ecfdf3;border-color:#bbf7d0;color:#14532d}.callout.warn{background:var(--warnbg);border-color:#fed7aa;color:var(--warn)} ul,ol{padding-left:22px;margin:10px 0 0} li{margin:7px 0}.source{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;margin-top:36px}@media(max-width:860px){main{padding:28px 16px 48px}h1{font-size:28px}.kpis{grid-template-columns:1fr 1fr}table{display:block;overflow-x:auto;table-layout:auto;white-space:nowrap}}@media(max-width:520px){.kpis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>普惠贷款经营数据分析报告</h1>
+  <p class="meta">基于 datasource/puhui_loan_mock.csv 的 60 户 mock 客户明细，并结合 ai_analysis/普惠贷款AI应用方案.md 中的 AI 分析框架生成。</p>
+</header>
+
+<section>
+  <h2>Executive Summary</h2>
+  <div class="summary">
+    <div class="summary-item"><strong>样本普惠贷款余额呈持续增长。</strong> 今日余额 14,279.0 万元，较昨日增加 66.5 万元，较上月增加 1,071.0 万元，较年初增加 3,085.0 万元。</div>
+    <div class="summary-item"><strong>授信使用率处于较高但未超限区间。</strong> 样本授信总额 19,480.0 万元，整体使用率 73.3%，剩余可用额度 5,201.0 万元；未发现今日余额大于授信的异常客户。</div>
+    <div class="summary-item"><strong>增长贡献集中在较大余额客户。</strong> 深圳龙岗前景精密、金华义乌瑞诚贸易、厦门湖里海丝跨境电商、重庆渝北星桥科技、武汉江夏智联光电是月度增长前五户。</div>
+    <div class="summary-item"><strong>管理动作应从“扩面”转向“维护 + 转化”。</strong> 当前没有月度下降客户，也没有低于 30% 的低使用率客户；建议重点维护高使用率客户，同时对剩余额度大的客户跟进合规提款机会。</div>
+  </div>
+</section>
+
+<section>
+  <h2>总体余额和授信使用情况</h2>
+  <p><strong>这批样本客户的经营信号偏正向。</strong> 余额从年初、上月、昨日到今日逐级抬升，说明 mock 数据呈现的是普惠贷款投放扩张场景。与方案文件建议一致，当前字段已经可以直接支撑日报中的总余额、日度变化、月度变化、年初以来变化、授信使用率和剩余额度。</p>
+  <div class="kpis">
+    <div class="kpi"><div class="label">今日余额</div><div class="value">14,279.0 万</div><div class="sub">60 户客户合计</div></div>
+    <div class="kpi"><div class="label">较昨日</div><div class="value">+66.5 万</div><div class="sub">日度增长 0.5%</div></div>
+    <div class="kpi"><div class="label">较上月</div><div class="value">+1,071.0 万</div><div class="sub">月度增长 8.1%</div></div>
+    <div class="kpi"><div class="label">授信使用率</div><div class="value">73.3%</div><div class="sub">剩余额度 5,201.0 万</div></div>
+  </div>
+  <table><thead><tr><th class="left">指标</th><th class="right">金额（万元）</th><th class="right">较今日差异（万元）</th><th class="left">解读</th></tr></thead><tbody><tr><td class="left">今日普惠贷款余额</td><td class="right">14,279.0</td><td class="right">基准</td><td class="left">当前样本客户贷款余额合计</td></tr><tr><td class="left">昨日普惠贷款余额</td><td class="right">14,212.5</td><td class="right">+66.5</td><td class="left">日度净增 66.5 万元，整体小幅增长</td></tr><tr><td class="left">上月普惠贷款余额</td><td class="right">13,208.0</td><td class="right">+1,071.0</td><td class="left">月度净增 1071.0 万元，样本客户普遍扩张</td></tr><tr><td class="left">年初普惠贷款余额</td><td class="right">11,194.0</td><td class="right">+3,085.0</td><td class="left">年初以来净增 3085.0 万元，是主要经营亮点</td></tr><tr><td class="left">授信总额</td><td class="right">19,480.0</td><td class="right"></td><td class="left">总体授信使用率 73.3%，剩余额度 5,201.0 万元</td></tr></tbody></table>
+</section>
+
+<section>
+  <h2>月度增长主要由大额客户贡献</h2>
+  <p><strong>月度净增 1071.0 万元，前 10 名客户合计贡献 353.0 万元。</strong> 这些客户多数授信使用率在 72% 至 77% 附近，说明既有存量余额贡献，也仍保留一定额度空间。对客户经理而言，这类客户适合做投放来源复盘和后续额度匹配检查。</p>
+  <table><thead><tr><th class="left">企业名称</th><th class="right">今日余额（万元）</th><th class="right">较上月增减（万元）</th><th class="right">授信使用率</th><th class="right">剩余额度（万元）</th></tr></thead><tbody><tr><td class="left">深圳龙岗前景精密有限公司</td><td class="right">612.0</td><td class="right">+44.0</td><td class="right">76.5%</td><td class="right">188.0</td></tr><tr><td class="left">金华义乌瑞诚贸易有限公司</td><td class="right">452.0</td><td class="right">+42.0</td><td class="right">75.3%</td><td class="right">148.0</td></tr><tr><td class="left">厦门湖里海丝跨境电商有限公司</td><td class="right">472.0</td><td class="right">+41.0</td><td class="right">76.1%</td><td class="right">148.0</td></tr><tr><td class="left">重庆渝北星桥科技有限公司</td><td class="right">489.0</td><td class="right">+38.0</td><td class="right">75.2%</td><td class="right">161.0</td></tr><tr><td class="left">武汉江夏智联光电有限公司</td><td class="right">526.0</td><td class="right">+37.0</td><td class="right">75.1%</td><td class="right">174.0</td></tr><tr><td class="left">杭州青禾智能装备有限公司</td><td class="right">386.0</td><td class="right">+34.0</td><td class="right">77.2%</td><td class="right">114.0</td></tr><tr><td class="left">绍兴柯桥锦润纺织有限公司</td><td class="right">318.0</td><td class="right">+32.0</td><td class="right">75.7%</td><td class="right">102.0</td></tr><tr><td class="left">合肥蜀山徽创信息技术有限公司</td><td class="right">326.0</td><td class="right">+30.0</td><td class="right">72.4%</td><td class="right">124.0</td></tr><tr><td class="left">福州仓山闽江冷链有限公司</td><td class="right">337.0</td><td class="right">+28.0</td><td class="right">73.3%</td><td class="right">123.0</td></tr><tr><td class="left">郑州管城豫新供应链有限公司</td><td class="right">398.0</td><td class="right">+27.0</td><td class="right">76.5%</td><td class="right">122.0</td></tr></tbody></table>
+</section>
+
+<section>
+  <h2>年初以来增长客户是阶段性汇报重点</h2>
+  <p><strong>年初以来净增 3085.0 万元，头部增长客户可作为支行或分行阶段性经营汇报的核心样本。</strong> 深圳龙岗前景精密有限公司年初以来增加 123.0 万元，厦门湖里海丝跨境电商有限公司增加 116.0 万元，重庆渝北星桥科技有限公司增加 103.0 万元。</p>
+  <table><thead><tr><th class="left">企业名称</th><th class="right">今日余额（万元）</th><th class="right">较年初增减（万元）</th><th class="right">授信使用率</th><th class="left">经营含义</th></tr></thead><tbody><tr><td class="left">深圳龙岗前景精密有限公司</td><td class="right">612.0</td><td class="right">+123.0</td><td class="right">76.5%</td><td class="left">全年投放贡献客户，建议纳入增长来源复盘</td></tr><tr><td class="left">厦门湖里海丝跨境电商有限公司</td><td class="right">472.0</td><td class="right">+116.0</td><td class="right">76.1%</td><td class="left">全年投放贡献客户，建议纳入增长来源复盘</td></tr><tr><td class="left">重庆渝北星桥科技有限公司</td><td class="right">489.0</td><td class="right">+103.0</td><td class="right">75.2%</td><td class="left">全年投放贡献客户，建议纳入增长来源复盘</td></tr><tr><td class="left">武汉江夏智联光电有限公司</td><td class="right">526.0</td><td class="right">+94.0</td><td class="right">75.1%</td><td class="left">全年投放贡献客户，建议纳入增长来源复盘</td></tr><tr><td class="left">杭州青禾智能装备有限公司</td><td class="right">386.0</td><td class="right">+88.0</td><td class="right">77.2%</td><td class="left">全年投放贡献客户，建议纳入增长来源复盘</td></tr><tr><td class="left">合肥蜀山徽创信息技术有限公司</td><td class="right">326.0</td><td class="right">+85.0</td><td class="right">72.4%</td><td class="left">全年投放贡献客户，建议纳入增长来源复盘</td></tr><tr><td class="left">金华义乌瑞诚贸易有限公司</td><td class="right">452.0</td><td class="right">+84.0</td><td class="right">75.3%</td><td class="left">全年投放贡献客户，建议纳入增长来源复盘</td></tr><tr><td class="left">西安雁塔秦工电子有限公司</td><td class="right">416.0</td><td class="right">+82.0</td><td class="right">75.6%</td><td class="left">全年投放贡献客户，建议纳入增长来源复盘</td></tr><tr><td class="left">郑州管城豫新供应链有限公司</td><td class="right">398.0</td><td class="right">+79.0</td><td class="right">76.5%</td><td class="left">全年投放贡献客户，建议纳入增长来源复盘</td></tr><tr><td class="left">福州仓山闽江冷链有限公司</td><td class="right">337.0</td><td class="right">+76.0</td><td class="right">73.3%</td><td class="left">全年投放贡献客户，建议纳入增长来源复盘</td></tr></tbody></table>
+</section>
+
+<section>
+  <h2>授信空间仍集中在大额客户</h2>
+  <p><strong>剩余额度最大的客户同时也是当前余额较高的客户。</strong> 这意味着后续增量机会并不只来自低使用率客户，也可能来自已有合作较深、额度仍有余量的客户。建议把剩余额度 TOP 客户作为客户经理二次走访清单，确认真实用款需求、提款条件和额度匹配。</p>
+  <table><thead><tr><th class="left">企业名称</th><th class="right">今日余额（万元）</th><th class="right">授信（万元）</th><th class="right">授信使用率</th><th class="right">剩余额度（万元）</th><th class="left">建议动作</th></tr></thead><tbody><tr><td class="left">深圳龙岗前景精密有限公司</td><td class="right">612.0</td><td class="right">800.0</td><td class="right">76.5%</td><td class="right">188.0</td><td class="left">额度空间较大，结合需求判断是否还有合规提款机会</td></tr><tr><td class="left">武汉江夏智联光电有限公司</td><td class="right">526.0</td><td class="right">700.0</td><td class="right">75.1%</td><td class="right">174.0</td><td class="left">额度空间较大，结合需求判断是否还有合规提款机会</td></tr><tr><td class="left">重庆渝北星桥科技有限公司</td><td class="right">489.0</td><td class="right">650.0</td><td class="right">75.2%</td><td class="right">161.0</td><td class="left">额度空间较大，结合需求判断是否还有合规提款机会</td></tr><tr><td class="left">金华义乌瑞诚贸易有限公司</td><td class="right">452.0</td><td class="right">600.0</td><td class="right">75.3%</td><td class="right">148.0</td><td class="left">额度空间较大，结合需求判断是否还有合规提款机会</td></tr><tr><td class="left">厦门湖里海丝跨境电商有限公司</td><td class="right">472.0</td><td class="right">620.0</td><td class="right">76.1%</td><td class="right">148.0</td><td class="left">额度空间较大，结合需求判断是否还有合规提款机会</td></tr><tr><td class="left">佛山顺德科联家电配件有限公司</td><td class="right">438.0</td><td class="right">580.0</td><td class="right">75.5%</td><td class="right">142.0</td><td class="left">额度空间较大，结合需求判断是否还有合规提款机会</td></tr><tr><td class="left">芜湖鸠江安瑞新材有限公司</td><td class="right">403.0</td><td class="right">540.0</td><td class="right">74.6%</td><td class="right">137.0</td><td class="left">额度空间较大，结合需求判断是否还有合规提款机会</td></tr><tr><td class="left">泸州龙马潭川南物流有限公司</td><td class="right">365.0</td><td class="right">500.0</td><td class="right">73.0%</td><td class="right">135.0</td><td class="left">额度空间较大，结合需求判断是否还有合规提款机会</td></tr><tr><td class="left">珠海香洲蓝海软件有限公司</td><td class="right">215.0</td><td class="right">350.0</td><td class="right">61.4%</td><td class="right">135.0</td><td class="left">额度空间较大，结合需求判断是否还有合规提款机会</td></tr><tr><td class="left">西安雁塔秦工电子有限公司</td><td class="right">416.0</td><td class="right">550.0</td><td class="right">75.6%</td><td class="right">134.0</td><td class="left">额度空间较大，结合需求判断是否还有合规提款机会</td></tr></tbody></table>
+</section>
+
+<section>
+  <h2>客户分层结果和跟进动作</h2>
+  <p><strong>按方案中的授信使用率和余额变化逻辑，本批数据没有超授信、零余额有授信或月度下降客户。</strong> 使用 75% 作为重点维护阈值时，共有 13 户进入重点维护；使用 65% 作为潜力提款观察阈值时，仅有 1 户进入低使用率观察。</p>
+  <table><thead><tr><th class="left">客户分类</th><th class="right">客户数</th><th class="right">占比</th><th class="left">管理建议</th></tr></thead><tbody><tr><td class="left">重点维护客户（使用率 ≥75%）</td><td class="right">13</td><td class="right">21.7%</td><td class="left">关注续贷、增信和额度是否满足后续用款</td></tr><tr><td class="left">潜力提款客户（使用率 ≤65%）</td><td class="right">1</td><td class="right">1.7%</td><td class="left">目前样本仅 1 户，建议重点了解提款需求</td></tr><tr><td class="left">日度波动关注客户（较昨日下降）</td><td class="right">21</td><td class="right">35.0%</td><td class="left">多为小幅下降，适合做清单式核实</td></tr><tr><td class="left">月度下降客户</td><td class="right">0</td><td class="right">0.0%</td><td class="left">当前样本无月度下降客户</td></tr><tr><td class="left">超授信或数据异常客户</td><td class="right">0</td><td class="right">0.0%</td><td class="left">当前样本无超授信客户</td></tr></tbody></table>
+  <h3>授信使用率最高客户</h3>
+  <table><thead><tr><th class="left">企业名称</th><th class="right">今日余额（万元）</th><th class="right">授信（万元）</th><th class="right">授信使用率</th><th class="left">建议动作</th></tr></thead><tbody><tr><td class="left">杭州青禾智能装备有限公司</td><td class="right">386.0</td><td class="right">500.0</td><td class="right">77.2%</td><td class="left">接近高使用区间，关注续贷和额度匹配</td></tr><tr><td class="left">台州椒江宏泰塑模有限公司</td><td class="right">276.0</td><td class="right">360.0</td><td class="right">76.7%</td><td class="left">接近高使用区间，关注续贷和额度匹配</td></tr><tr><td class="left">郑州管城豫新供应链有限公司</td><td class="right">398.0</td><td class="right">520.0</td><td class="right">76.5%</td><td class="left">接近高使用区间，关注续贷和额度匹配</td></tr><tr><td class="left">深圳龙岗前景精密有限公司</td><td class="right">612.0</td><td class="right">800.0</td><td class="right">76.5%</td><td class="left">接近高使用区间，关注续贷和额度匹配</td></tr><tr><td class="left">厦门湖里海丝跨境电商有限公司</td><td class="right">472.0</td><td class="right">620.0</td><td class="right">76.1%</td><td class="left">接近高使用区间，关注续贷和额度匹配</td></tr><tr><td class="left">绍兴柯桥锦润纺织有限公司</td><td class="right">318.0</td><td class="right">420.0</td><td class="right">75.7%</td><td class="left">接近高使用区间，关注续贷和额度匹配</td></tr><tr><td class="left">西安雁塔秦工电子有限公司</td><td class="right">416.0</td><td class="right">550.0</td><td class="right">75.6%</td><td class="left">接近高使用区间，关注续贷和额度匹配</td></tr><tr><td class="left">温州瓯越鞋材有限公司</td><td class="right">242.0</td><td class="right">320.0</td><td class="right">75.6%</td><td class="left">接近高使用区间，关注续贷和额度匹配</td></tr><tr><td class="left">佛山顺德科联家电配件有限公司</td><td class="right">438.0</td><td class="right">580.0</td><td class="right">75.5%</td><td class="left">接近高使用区间，关注续贷和额度匹配</td></tr><tr><td class="left">金华义乌瑞诚贸易有限公司</td><td class="right">452.0</td><td class="right">600.0</td><td class="right">75.3%</td><td class="left">接近高使用区间，关注续贷和额度匹配</td></tr></tbody></table>
+  <h3>授信使用率相对较低客户</h3>
+  <table><thead><tr><th class="left">企业名称</th><th class="right">今日余额（万元）</th><th class="right">授信（万元）</th><th class="right">授信使用率</th><th class="right">剩余额度（万元）</th></tr></thead><tbody><tr><td class="left">珠海香洲蓝海软件有限公司</td><td class="right">215.0</td><td class="right">350.0</td><td class="right">61.4%</td><td class="right">135.0</td></tr><tr><td class="left">宜宾翠屏竹韵食品有限公司</td><td class="right">98.0</td><td class="right">150.0</td><td class="right">65.3%</td><td class="right">52.0</td></tr><tr><td class="left">潍坊奎文金禾种业有限公司</td><td class="right">112.0</td><td class="right">170.0</td><td class="right">65.9%</td><td class="right">58.0</td></tr><tr><td class="left">丽水莲都山谷民宿有限公司</td><td class="right">53.0</td><td class="right">80.0</td><td class="right">66.2%</td><td class="right">27.0</td></tr><tr><td class="left">昆明官渡云岭花卉有限公司</td><td class="right">73.0</td><td class="right">110.0</td><td class="right">66.4%</td><td class="right">37.0</td></tr><tr><td class="left">长沙雨花湘诚广告有限公司</td><td class="right">93.0</td><td class="right">140.0</td><td class="right">66.4%</td><td class="right">47.0</td></tr><tr><td class="left">宜昌夷陵清江茶叶有限公司</td><td class="right">81.0</td><td class="right">120.0</td><td class="right">67.5%</td><td class="right">39.0</td></tr><tr><td class="left">大理下关洱海旅游服务有限公司</td><td class="right">68.0</td><td class="right">100.0</td><td class="right">68.0%</td><td class="right">32.0</td></tr></tbody></table>
+</section>
+
+<section>
+  <h2>日度下降客户需要轻量核实，不宜直接判断风险</h2>
+  <p><strong>样本整体较昨日净增，但仍有 21 户客户出现日度下降。</strong> 这些下降幅度较小，当前更适合作为客户经理核实清单，而不是直接定义为风险客户。方案文件中的“余额明显下降客户”规则更适合用于月度或超过阈值的下降场景。</p>
+  <table><thead><tr><th class="left">企业名称</th><th class="right">今日余额（万元）</th><th class="right">较昨日增减（万元）</th><th class="right">授信使用率</th><th class="left">建议动作</th></tr></thead><tbody><tr><td class="left">芜湖鸠江安瑞新材有限公司</td><td class="right">403.0</td><td class="right">-4.0</td><td class="right">74.6%</td><td class="left">日度下降客户，先核实是否正常还款或临时波动</td></tr><tr><td class="left">舟山普陀海兴水产有限公司</td><td class="right">195.0</td><td class="right">-3.0</td><td class="right">69.6%</td><td class="left">日度下降客户，先核实是否正常还款或临时波动</td></tr><tr><td class="left">西安雁塔秦工电子有限公司</td><td class="right">416.0</td><td class="right">-3.0</td><td class="right">75.6%</td><td class="left">日度下降客户，先核实是否正常还款或临时波动</td></tr><tr><td class="left">佛山顺德科联家电配件有限公司</td><td class="right">438.0</td><td class="right">-3.0</td><td class="right">75.5%</td><td class="left">日度下降客户，先核实是否正常还款或临时波动</td></tr><tr><td class="left">泉州晋江嘉诚鞋服有限公司</td><td class="right">289.0</td><td class="right">-3.0</td><td class="right">74.1%</td><td class="left">日度下降客户，先核实是否正常还款或临时波动</td></tr><tr><td class="left">绵阳安州鑫盛建材有限公司</td><td class="right">334.0</td><td class="right">-2.0</td><td class="right">74.2%</td><td class="left">日度下降客户，先核实是否正常还款或临时波动</td></tr><tr><td class="left">南充顺庆嘉和商贸有限公司</td><td class="right">209.0</td><td class="right">-2.0</td><td class="right">74.6%</td><td class="left">日度下降客户，先核实是否正常还款或临时波动</td></tr><tr><td class="left">洛阳涧西华锐轴承有限公司</td><td class="right">284.0</td><td class="right">-2.0</td><td class="right">74.7%</td><td class="left">日度下降客户，先核实是否正常还款或临时波动</td></tr><tr><td class="left">株洲荷塘明瑞服饰有限公司</td><td class="right">172.0</td><td class="right">-2.0</td><td class="right">71.7%</td><td class="left">日度下降客户，先核实是否正常还款或临时波动</td></tr><tr><td class="left">中山小榄华盛灯饰有限公司</td><td class="right">264.0</td><td class="right">-2.0</td><td class="right">73.3%</td><td class="left">日度下降客户，先核实是否正常还款或临时波动</td></tr></tbody></table>
+  <div class="callout warn">当前没有较上月下降客户，也没有余额大于授信客户。报告不应制造风险结论；更合理的表达是“日度小幅下降需核实原因”。</div>
+</section>
+
+<section>
+  <h2>AI 应用建议：从日报自动化开始</h2>
+  <p><strong>结合方案文件和本次数据结果，最适合落地的第一版是自动日报 + 客户经理跟进清单。</strong> 因为本数据的核心价值已经集中在余额变化、授信使用率和客户分层，这些都可以通过固定公式稳定复现。</p>
+  <ol>
+    <li><strong>日报自动化：</strong>每天输出今日余额、较昨日、较上月、较年初、授信使用率和剩余额度。</li>
+    <li><strong>增长客户清单：</strong>固定展示月度增长 TOP10 和年初以来增长 TOP10，用于经营复盘。</li>
+    <li><strong>授信空间清单：</strong>展示剩余额度 TOP 客户，推动客户经理跟进提款需求。</li>
+    <li><strong>波动核实清单：</strong>展示日度下降和月度下降客户，区分正常还款、客户流失、风险压降和数据口径问题。</li>
+    <li><strong>后续看板升级：</strong>补充客户经理、支行、行业、到期日、风险分类、逾期天数后，再做机构排名、客户经理排名和风险预警。</li>
+  </ol>
+</section>
+
+<section>
+  <h2>关键假设与限制</h2>
+  <ul>
+    <li>本报告使用的是 datasource 目录下的 mock 数据，不代表真实银行经营结果。</li>
+    <li>数据未提供统计日期、客户经理、机构、行业、到期日、风险分类和逾期信息，因此不能做真实责任归属、行业集中度、到期预警或风险分类判断。</li>
+    <li>当前环境缺少 pandas、seaborn、matplotlib，报告未生成静态 PNG 图表；本版使用 KPI 卡和证据表承载计算结果。</li>
+    <li>AI 输出仅用于经营辅助和清单生成，不能替代授信审批、风险分类、监管报送或正式考核口径。</li>
+  </ul>
+</section>
+
+<p class="source">数据来源：datasource/puhui_loan_mock.csv；分析框架来源：ai_analysis/普惠贷款AI应用方案.md。计算字段包括较昨日增减、较上月增减、较年初增减、授信使用率和剩余可用额度。</p>
+</main>
+</body>
+</html>
